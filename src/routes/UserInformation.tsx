@@ -65,9 +65,9 @@ const UserInformation: React.FC = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-slate-50 to-blue-50 sm:p-6">
+    <div className="sm:p-6">
       {/* Stats Section */}
-      <div className="mb-8">
+      <div className="mb-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {infoCards.map((card, index) => (
             <InfoCard

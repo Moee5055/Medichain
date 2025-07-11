@@ -1,10 +1,25 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Calendar1, File, Home, User } from "lucide-react";
+import {
+  LayoutDashboard,
+  Calendar,
+  FileText,
+  Shield,
+  HeadphonesIcon,
+} from "lucide-react";
+import { NavLink } from "react-router";
+
+const navigationItems = [
+  { name: "Dashboard", icon: LayoutDashboard, path: "/" },
+  { name: "Appointment", icon: Calendar, path: "/appointment" },
+  { name: "Records", icon: FileText, path: "/records" },
+  { name: "Insurance", icon: Shield, path: "/insurance" },
+  { name: "Helpdesk", icon: HeadphonesIcon, path: "/help" },
+];
 
 export default function UserSideBar() {
   return (
     <div className=" bg-[#ffffff] shadow-lg rounded-lg">
-      <div className="min-w-[300px] flex items-center gap-3 px-3">
+      <div className="min-w-[300px] border-b border-gray-200 flex items-center gap-3 px-3 pb-3">
         <div className="pt-3">
           <Avatar className="h-10 w-10">
             <AvatarImage src="https://github.com/shadcn.png" />
@@ -16,32 +31,27 @@ export default function UserSideBar() {
         </div>
       </div>
       {/* siderbar option */}
-      <div className="mt-5 space-y-2">
-        <div className="ml-2 flex items-center gap-3 px-3 hover:bg-zinc-200/60 cursor-pointer py-2 rounded-lg">
-          <Home />
-          <p className="font-semibold text-md">Dashboard</p>
-        </div>
-        <div className="ml-2 flex items-center gap-3 px-3 hover:bg-zinc-200/60 cursor-pointer py-2 rounded-lg">
-          <User />
-          <p className="font-semibold text-md">Profile</p>
-        </div>
-        <div className="ml-2 flex items-center gap-3 px-3 hover:bg-zinc-200/60 cursor-pointer py-2 rounded-lg">
-          <Calendar1 />
-          <p className="font-semibold text-md">Appointments</p>
-        </div>
-        <div className="ml-2 flex items-center gap-3 px-3 hover:bg-zinc-200/60 cursor-pointer py-2 rounded-lg">
-          <File />
-          <p className="font-semibold text-md">Records</p>
-        </div>
-        <div className="ml-2 flex items-center gap-3 px-3 hover:bg-zinc-200/60 cursor-pointer py-2 rounded-lg">
-          <Calendar1 />
-          <p className="font-semibold text-md">Insurance</p>
-        </div>
-        <div className="ml-2 flex items-center gap-3 px-3 hover:bg-zinc-200/60 cursor-pointer py-2 rounded-lg">
-          <Calendar1 />
-          <p className="font-semibold text-md">Help</p>
-        </div>
-      </div>
+      <nav className="mt-6">
+        {navigationItems.map((item) => {
+          const Icon = item.icon;
+          return (
+            <NavLink
+              key={item.name}
+              to={item.path}
+              className={({ isActive }) =>
+                `flex items-center space-x-3 px-6 py-3 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-blue-50 text-blue-700 border-r-2 border-blue-700"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                }`
+              }
+            >
+              <Icon className="w-5 h-5" />
+              <span>{item.name}</span>
+            </NavLink>
+          );
+        })}
+      </nav>
     </div>
   );
 }
