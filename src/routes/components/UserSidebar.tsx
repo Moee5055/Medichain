@@ -3,7 +3,7 @@ import { Calendar1, File, Home, User } from "lucide-react";
 
 export default function UserSideBar() {
   return (
-    <div className="h-screen bg-[#ffffff] shadow-lg">
+    <div className=" bg-[#ffffff] shadow-lg rounded-lg">
       <div className="min-w-[300px] flex items-center gap-3 px-3">
         <div className="pt-3">
           <Avatar className="h-10 w-10">
