@@ -104,7 +104,7 @@ const timeSlots = [
 
 const unavailableSlots = ["10:30", "15:00", "16:30"];
 
-function AppointmentPage() {
+function App() {
   const [selectedHospital, setSelectedHospital] = useState<Hospital | null>(
     null,
   );
@@ -137,6 +137,7 @@ function AppointmentPage() {
     const year = currentMonth.getFullYear();
     const month = currentMonth.getMonth();
     const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
     const startDate = new Date(firstDay);
     startDate.setDate(startDate.getDate() - firstDay.getDay());
 
@@ -205,8 +206,8 @@ function AppointmentPage() {
   const calendarDays = generateCalendarDays();
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="h-full w-full py-8">
+      <div className="h-full overflow-y-auto w-full px-3">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
@@ -640,7 +641,7 @@ function AppointmentPage() {
 
       {/* Success Modal */}
       {showSuccessModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl p-8 max-w-md w-full">
             <div className="text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -675,4 +676,4 @@ function AppointmentPage() {
   );
 }
 
-export default AppointmentPage;
+export default App;
